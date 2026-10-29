@@ -32,4 +32,8 @@ Scripts to install and run scrcpy on Arch Linux, with native Android gamepad inp
 
 Stack: Bash, scrcpy, ADB, C, SDL3.
 
-Original repositories: [KaraokeDJ](https://github.com/KristanLaimon/KaraokeDJ), [Greppy](https://github.com/KristanLaimon/Greppy), [luex](https://github.com/KristanLaimon/luex), [srccpy-install](https://github.com/KristanLaimon/srccpy-install). ClickProofer started here.
+
+## [koreder-patches](koreader-patches/)
+Some .lua files patch for recent koreader versions, for my e-readers
+
+Stack: lua (JIT 5.1 Compatible syntax)
