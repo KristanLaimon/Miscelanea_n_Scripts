@@ -1,0 +1,6 @@
+# Isolated testing Neovim environment & data directories
+nvim/
+nvim-data/
+tests/sandbox/
+.luelte/dist/
+*.log

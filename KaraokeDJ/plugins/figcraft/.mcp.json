@@ -1,0 +1,10 @@
+{
+    "mcpServers":  {
+                       "figcraft":  {
+                                        "args":  [
+                                                     "mcp"
+                                                 ],
+                                        "command":  "C:\\Program Files\\FigCraft\\figcraft-cli.exe"
+                                    }
+                   }
+}

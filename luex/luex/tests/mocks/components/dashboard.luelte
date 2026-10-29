@@ -1,0 +1,17 @@
+<script lazy={true} keys={["<leader>d"]} cmd="LuelteDashboard">
+  import GitDashboard from "components.git_dashboard"
+
+  onMount(function(ctx)
+    vim.notify("[Luelte] Dashboard opened!", vim.log.levels.INFO)
+  end)
+</script>
+
+<main width="70%" height="65%" border="rounded">
+  <h1 class="Title">🚀 Luelte Control Panel (.luelte)</h1>
+  <hr class="Comment" />
+
+  <GitDashboard />
+
+  <hr class="Comment" />
+  <span class="Special">Press 'q' or 'Esc' to close Dashboard.</span>
+</main>

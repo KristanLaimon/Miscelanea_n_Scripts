@@ -1,0 +1,11 @@
+{
+  "controller": "Xbox Series X Controller",
+  "description": "Keys are the buttons Android will receive; values are the physical buttons you will send (native HID gamepad mappings)",
+  "buttons": {
+    "A": "X",
+    "B": "Y",
+    "X": "A",
+    "Y": "B"
+  },
+  "sdl_guid": "0300f5a35e040000120b000014050000"
+}

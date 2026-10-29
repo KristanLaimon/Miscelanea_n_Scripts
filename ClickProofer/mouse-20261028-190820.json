@@ -1,0 +1,893 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-10-29T02:07:57.362929+00:00",
+  "clock": "Windows message time offsets in milliseconds; received_t_ms is UI delivery time",
+  "button": "left",
+  "intended_clicks": 27,
+  "events": [
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 0,
+      "received_t_ms": 3373.5061,
+      "windows_message_time_ms": 1253524687,
+      "x": 277,
+      "y": 148
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 31,
+      "received_t_ms": 3417.8985,
+      "windows_message_time_ms": 1253524718,
+      "x": 277,
+      "y": 148
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 63,
+      "received_t_ms": 3449.434,
+      "windows_message_time_ms": 1253524750,
+      "x": 277,
+      "y": 148
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 109,
+      "received_t_ms": 3493.8098,
+      "windows_message_time_ms": 1253524796,
+      "x": 277,
+      "y": 148
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 1047,
+      "received_t_ms": 4424.5971,
+      "windows_message_time_ms": 1253525734,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 1094,
+      "received_t_ms": 4469.0071,
+      "windows_message_time_ms": 1253525781,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 1719,
+      "received_t_ms": 5106.6008,
+      "windows_message_time_ms": 1253526406,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 1844,
+      "received_t_ms": 5229.0269,
+      "windows_message_time_ms": 1253526531,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 2328,
+      "received_t_ms": 5702.1361,
+      "windows_message_time_ms": 1253527015,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 2391,
+      "received_t_ms": 5771.8388,
+      "windows_message_time_ms": 1253527078,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 2797,
+      "received_t_ms": 6186.1092,
+      "windows_message_time_ms": 1253527484,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 2875,
+      "received_t_ms": 6256.9865,
+      "windows_message_time_ms": 1253527562,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 3188,
+      "received_t_ms": 6579.7214,
+      "windows_message_time_ms": 1253527875,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 3250,
+      "received_t_ms": 6623.9624,
+      "windows_message_time_ms": 1253527937,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 3266,
+      "received_t_ms": 6645.4976,
+      "windows_message_time_ms": 1253527953,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 3313,
+      "received_t_ms": 6689.9577,
+      "windows_message_time_ms": 1253528000,
+      "x": 270,
+      "y": 152
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 3688,
+      "received_t_ms": 7080.6199,
+      "windows_message_time_ms": 1253528375,
+      "x": 320,
+      "y": 158
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 3750,
+      "received_t_ms": 7125.0239,
+      "windows_message_time_ms": 1253528437,
+      "x": 320,
+      "y": 158
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 3750,
+      "received_t_ms": 7135.4311,
+      "windows_message_time_ms": 1253528437,
+      "x": 320,
+      "y": 158
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 3797,
+      "received_t_ms": 7179.9526,
+      "windows_message_time_ms": 1253528484,
+      "x": 320,
+      "y": 158
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 4281,
+      "received_t_ms": 7659.8894,
+      "windows_message_time_ms": 1253528968,
+      "x": 378,
+      "y": 157
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 4344,
+      "received_t_ms": 7717.7968,
+      "windows_message_time_ms": 1253529031,
+      "x": 378,
+      "y": 157
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 4781,
+      "received_t_ms": 8154.7336,
+      "windows_message_time_ms": 1253529468,
+      "x": 315,
+      "y": 156
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 4844,
+      "received_t_ms": 8221.6549,
+      "windows_message_time_ms": 1253529531,
+      "x": 315,
+      "y": 156
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 5281,
+      "received_t_ms": 8663.1632,
+      "windows_message_time_ms": 1253529968,
+      "x": 244,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 5328,
+      "received_t_ms": 8707.3249,
+      "windows_message_time_ms": 1253530015,
+      "x": 244,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 5328,
+      "received_t_ms": 8715.4273,
+      "windows_message_time_ms": 1253530015,
+      "x": 244,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 5375,
+      "received_t_ms": 8760.429,
+      "windows_message_time_ms": 1253530062,
+      "x": 244,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 5781,
+      "received_t_ms": 9166.7058,
+      "windows_message_time_ms": 1253530468,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 5828,
+      "received_t_ms": 9210.9248,
+      "windows_message_time_ms": 1253530515,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 5844,
+      "received_t_ms": 9220.4827,
+      "windows_message_time_ms": 1253530531,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 5891,
+      "received_t_ms": 9265.0819,
+      "windows_message_time_ms": 1253530578,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 6297,
+      "received_t_ms": 9682.6379,
+      "windows_message_time_ms": 1253530984,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 6344,
+      "received_t_ms": 9727.0029,
+      "windows_message_time_ms": 1253531031,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 6359,
+      "received_t_ms": 9735.4575,
+      "windows_message_time_ms": 1253531046,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 6391,
+      "received_t_ms": 9780.1002,
+      "windows_message_time_ms": 1253531078,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 6781,
+      "received_t_ms": 10163.7615,
+      "windows_message_time_ms": 1253531468,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 6828,
+      "received_t_ms": 10208.1573,
+      "windows_message_time_ms": 1253531515,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 6844,
+      "received_t_ms": 10231.6038,
+      "windows_message_time_ms": 1253531531,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 6891,
+      "received_t_ms": 10276.0309,
+      "windows_message_time_ms": 1253531578,
+      "x": 217,
+      "y": 159
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 7250,
+      "received_t_ms": 10636.7381,
+      "windows_message_time_ms": 1253531937,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 7328,
+      "received_t_ms": 10709.4946,
+      "windows_message_time_ms": 1253532015,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 7688,
+      "received_t_ms": 11066.3752,
+      "windows_message_time_ms": 1253532375,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 7719,
+      "received_t_ms": 11110.3102,
+      "windows_message_time_ms": 1253532406,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 7750,
+      "received_t_ms": 11131.7317,
+      "windows_message_time_ms": 1253532437,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 7797,
+      "received_t_ms": 11176.5654,
+      "windows_message_time_ms": 1253532484,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 8328,
+      "received_t_ms": 11720.3114,
+      "windows_message_time_ms": 1253533015,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 8391,
+      "received_t_ms": 11774.0891,
+      "windows_message_time_ms": 1253533078,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 8797,
+      "received_t_ms": 12177.7667,
+      "windows_message_time_ms": 1253533484,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 8844,
+      "received_t_ms": 12222.0431,
+      "windows_message_time_ms": 1253533531,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 8859,
+      "received_t_ms": 12243.5998,
+      "windows_message_time_ms": 1253533546,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 8906,
+      "received_t_ms": 12288.3681,
+      "windows_message_time_ms": 1253533593,
+      "x": 286,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 9281,
+      "received_t_ms": 12659.8321,
+      "windows_message_time_ms": 1253533968,
+      "x": 262,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 9313,
+      "received_t_ms": 12704.1658,
+      "windows_message_time_ms": 1253534000,
+      "x": 262,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 9328,
+      "received_t_ms": 12712.5194,
+      "windows_message_time_ms": 1253534015,
+      "x": 262,
+      "y": 166
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 9375,
+      "received_t_ms": 12757.0249,
+      "windows_message_time_ms": 1253534062,
+      "x": 262,
+      "y": 166
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 9781,
+      "received_t_ms": 13164.8242,
+      "windows_message_time_ms": 1253534468,
+      "x": 136,
+      "y": 155
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 9828,
+      "received_t_ms": 13212.0884,
+      "windows_message_time_ms": 1253534515,
+      "x": 136,
+      "y": 155
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 10297,
+      "received_t_ms": 13675.1993,
+      "windows_message_time_ms": 1253534984,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 10344,
+      "received_t_ms": 13719.1347,
+      "windows_message_time_ms": 1253535031,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 10344,
+      "received_t_ms": 13725.4898,
+      "windows_message_time_ms": 1253535031,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 10391,
+      "received_t_ms": 13770.0142,
+      "windows_message_time_ms": 1253535078,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 10797,
+      "received_t_ms": 14187.9986,
+      "windows_message_time_ms": 1253535484,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 10875,
+      "received_t_ms": 14250.0684,
+      "windows_message_time_ms": 1253535562,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 11391,
+      "received_t_ms": 14768.0787,
+      "windows_message_time_ms": 1253536078,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 11438,
+      "received_t_ms": 14812.1844,
+      "windows_message_time_ms": 1253536125,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 11453,
+      "received_t_ms": 14842.9886,
+      "windows_message_time_ms": 1253536140,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 11500,
+      "received_t_ms": 14887.654,
+      "windows_message_time_ms": 1253536187,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 11984,
+      "received_t_ms": 15357.8034,
+      "windows_message_time_ms": 1253536671,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 12031,
+      "received_t_ms": 15411.1536,
+      "windows_message_time_ms": 1253536718,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 13094,
+      "received_t_ms": 16477.8265,
+      "windows_message_time_ms": 1253537781,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 13141,
+      "received_t_ms": 16522.1251,
+      "windows_message_time_ms": 1253537828,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 13141,
+      "received_t_ms": 16526.7611,
+      "windows_message_time_ms": 1253537828,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 13188,
+      "received_t_ms": 16571.2585,
+      "windows_message_time_ms": 1253537875,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 14016,
+      "received_t_ms": 17402.9354,
+      "windows_message_time_ms": 1253538703,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 14078,
+      "received_t_ms": 17463.1832,
+      "windows_message_time_ms": 1253538765,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 15000,
+      "received_t_ms": 18385.0462,
+      "windows_message_time_ms": 1253539687,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 15047,
+      "received_t_ms": 18431.3672,
+      "windows_message_time_ms": 1253539734,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 15719,
+      "received_t_ms": 19096.9986,
+      "windows_message_time_ms": 1253540406,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 15766,
+      "received_t_ms": 19141.1706,
+      "windows_message_time_ms": 1253540453,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "down",
+      "button": "left",
+      "t_ms": 15766,
+      "received_t_ms": 19151.7181,
+      "windows_message_time_ms": 1253540453,
+      "x": 141,
+      "y": 139
+    },
+    {
+      "kind": "up",
+      "button": "left",
+      "t_ms": 15813,
+      "received_t_ms": 19196.2235,
+      "windows_message_time_ms": 1253540500,
+      "x": 141,
+      "y": 139
+    }
+  ],
+  "summary": {
+    "observed_clicks": 41,
+    "intended_clicks": 27,
+    "extra_clicks": 14,
+    "missing_clicks": 0,
+    "extra_clicks_per_100_intended": 51.85,
+    "press_to_press_ms": [
+      63,
+      984,
+      672,
+      609,
+      469,
+      391,
+      78,
+      422,
+      62,
+      531,
+      500,
+      500,
+      47,
+      453,
+      63,
+      453,
+      62,
+      422,
+      63,
+      406,
+      438,
+      62,
+      578,
+      469,
+      62,
+      422,
+      47,
+      453,
+      516,
+      47,
+      453,
+      594,
+      62,
+      531,
+      1110,
+      47,
+      875,
+      984,
+      719,
+      47
+    ],
+    "release_to_press_ms": [
+      32,
+      938,
+      625,
+      484,
+      406,
+      313,
+      16,
+      375,
+      0,
+      484,
+      437,
+      437,
+      0,
+      406,
+      16,
+      406,
+      15,
+      390,
+      16,
+      359,
+      360,
+      31,
+      531,
+      406,
+      15,
+      375,
+      15,
+      406,
+      469,
+      0,
+      406,
+      516,
+      15,
+      484,
+      1063,
+      0,
+      828,
+      922,
+      672,
+      0
+    ],
+    "hold_ms": [
+      31,
+      46,
+      47,
+      125,
+      63,
+      78,
+      62,
+      47,
+      62,
+      47,
+      63,
+      63,
+      47,
+      47,
+      47,
+      47,
+      47,
+      32,
+      47,
+      47,
+      78,
+      31,
+      47,
+      63,
+      47,
+      47,
+      32,
+      47,
+      47,
+      47,
+      47,
+      78,
+      47,
+      47,
+      47,
+      47,
+      47,
+      62,
+      47,
+      47,
+      47
+    ],
+    "predicted_clicks_by_threshold_ms": {
+      "10": 36,
+      "20": 29,
+      "30": 29,
+      "50": 27,
+      "75": 27,
+      "100": 27,
+      "150": 27,
+      "250": 27
+    },
+    "suggested_threshold_ms": 33,
+    "interpretation": "Suggestion assumes intentional clicks are spaced apart and extra clicks have the shortest release-to-press gaps. Manual count cannot identify which clicks were faulty or how many physical clicks were affected. Test before using."
+  }
+}

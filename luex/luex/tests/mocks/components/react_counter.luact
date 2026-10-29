@@ -1,0 +1,47 @@
+local luex = require("luex")
+local useState = luex.useState
+local useEffect = luex.useEffect
+local useMemo = luex.useMemo
+
+function ReactCounter(props)
+  local count, setCount = useState(0)
+
+  local doubleCount = useMemo(function()
+    return count * 2
+  end, { count })
+
+  useEffect(function()
+    vim.notify("[Luact] React Counter mounted! Initial count: " .. tostring(count), vim.log.levels.INFO)
+  end, {})
+
+  local function increment()
+    setCount(function(c) return c + 1 end)
+  end
+
+  local function decrement()
+    setCount(function(c) return c - 1 end)
+  end
+
+  return (
+    <main width="55%" height="45%" border="rounded" on:key:i={increment} on:key:d={decrement}>
+      <h1 class="Title">⚛️ React-Style useState/useMemo Counter (.luact)</h1>
+      <hr class="Comment" />
+
+      <p class="Keyword">Count (useState): {count}</p>
+      <p class="String">Double (useMemo): {doubleCount}</p>
+
+      <hr class="Comment" />
+      <p class="Function">Press 'i' to increment (+1)</p>
+      <p class="Function">Press 'd' to decrement (-1)</p>
+      <hr class="Comment" />
+      <span class="Special">Press 'q' or 'Esc' to close counter.</span>
+    </main>
+  )
+end
+
+-- React-Idiomatic Component Metadata (No <script> tag needed!)
+ReactCounter.cmd = "LuelteReactCounter"
+ReactCounter.keys = { "<leader>k" }
+ReactCounter.lazy = true
+
+return ReactCounter

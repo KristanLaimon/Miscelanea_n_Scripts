@@ -1,0 +1,33 @@
+<script setup>
+  import HelloModal from "components.hello_modal"
+  import ReactCounter from "components.react_counter"
+
+  local luex = require("luex")
+  local ref = luex.ref
+
+  local status = ref("Universal 3-Way Ecosystem Online!")
+</script>
+
+<template>
+  <main width="80%" height="80%" border="double">
+    <h1 class="VueTitle">🌐 Universal Hybrid Component (.lue)</h1>
+    <hr class="Comment" />
+
+    <p class="String">Status: {status.value}</p>
+
+    <!-- Embedding Svelte Component (.luelte) inside Vue (.lue) -->
+    <HelloModal />
+
+    <hr class="Comment" />
+
+    <!-- Embedding React Component (.luact) inside Vue (.lue) -->
+    <ReactCounter />
+  </main>
+</template>
+
+<style>
+  .VueTitle {
+    color: #42b883;
+    font-weight: bold;
+  }
+</style>

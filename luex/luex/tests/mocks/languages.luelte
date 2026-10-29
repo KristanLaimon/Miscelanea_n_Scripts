@@ -1,0 +1,1 @@
+<pack lang="lua" lsp="lua_ls" formatter="stylua" linter="luacheck" />

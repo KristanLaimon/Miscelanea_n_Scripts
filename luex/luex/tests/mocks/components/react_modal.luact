@@ -1,0 +1,27 @@
+import HelloModal from "components.hello_modal"
+
+local luex = require("luex")
+
+function ReactModal(props)
+  local greeting = "Hello from React-style .luact Component!"
+
+  return (
+    <main width="70%" height="65%" border="double">
+      <h1 class="Title">⚛️ React Component (.luact) embedding Svelte (<HelloModal />)</h1>
+      <hr class="Comment" />
+
+      <p class="Normal">{greeting}</p>
+
+      <HelloModal />
+
+      <hr class="Comment" />
+      <span class="Special">Press 'q' or 'Esc' to dismiss.</span>
+    </main>
+  )
+end
+
+ReactModal.cmd = "LuelteReactModal"
+ReactModal.keys = { "<leader>r" }
+ReactModal.lazy = true
+
+return ReactModal

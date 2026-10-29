@@ -1,0 +1,44 @@
+<script setup>
+  local luex = require("luex")
+  local ref = luex.ref
+  local computed = luex.computed
+  local onMounted = luex.onMounted
+
+  local count = ref(0)
+  local doubleCount = computed(function() return count.value * 2 end)
+
+  onMounted(function(ctx)
+    vim.notify("[Lue Vue Component] Mounted! Initial count: " .. tostring(count.value), vim.log.levels.INFO)
+  end)
+
+  local function increment()
+    count.value = count.value + 1
+  end
+
+  local function decrement()
+    count.value = count.value - 1
+  end
+</script>
+
+<template>
+  <main width="60%" height="50%" border="rounded" on:key:i={increment} on:key:d={decrement}>
+    <h1 class="VueTitle">🟢 Vue 3 Composition API Counter (.lue)</h1>
+    <hr class="Comment" />
+
+    <p class="Keyword">Count (ref): {count.value}</p>
+    <p class="String">Double (computed): {doubleCount.value}</p>
+
+    <hr class="Comment" />
+    <p class="Function">Press 'i' to increment (+1)</p>
+    <p class="Function">Press 'd' to decrement (-1)</p>
+    <hr class="Comment" />
+    <span class="Special">Press 'q' or 'Esc' to close Vue counter.</span>
+  </main>
+</template>
+
+<style>
+  .VueTitle {
+    color: #42b883;
+    font-weight: bold;
+  }
+</style>

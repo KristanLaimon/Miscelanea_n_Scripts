@@ -1,0 +1,22 @@
+﻿PLAN.md
+personal-skills/
+
+# Local editor and agent tooling
+.foxnvim/
+.krsnvim/
+.agents/
+.codex/
+.tools/
+
+# Build output and caches
+target/
+dist/
+__pycache__/
+*.pyc
+/luex/nvim/
+
+# Workflows from the former standalone repositories
+/*/.github/
+
+# Temporary click recorder directories
+/ClickProofer/clickproofer-clickdatasetextractor/tmp*/

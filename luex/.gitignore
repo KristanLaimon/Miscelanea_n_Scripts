@@ -1,0 +1,9 @@
+# Neovim isolated data directory
+nvim-data/
+.nvim-data/
+
+# OS / Editor temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db

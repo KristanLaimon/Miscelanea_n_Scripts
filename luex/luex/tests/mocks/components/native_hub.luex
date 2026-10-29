@@ -1,0 +1,69 @@
+local luex = require("luex")
+
+local HelloModal = luex.import("components.hello_modal")
+local GitDashboard = luex.import("components.git_dashboard")
+local VueCounter = luex.import("components.vue_counter")
+
+return luex.component({
+  name = "NativeHub",
+  cmd = "LuelteNativeHub",
+  keys = { "<leader>n" },
+  lazy = true,
+
+  props = {
+    title = "string",
+  },
+
+  styles = {
+    Header = { fg = "#bd93f9", bold = true },
+    Status = { fg = "#50fa7b", italic = true },
+    Info = { fg = "#8be9fd" },
+  },
+
+  setup = function(props)
+    local status = luex.signal("Native Neovim Lua Table DSL Online!")
+    local renderCount = luex.signal(1)
+
+    luex.onMount(function()
+      vim.notify("[Luex Native] NativeHub Mounted!", vim.log.levels.INFO)
+    end)
+
+    return {
+      status = status,
+      renderCount = renderCount,
+    }
+  end,
+
+  view = function(ctx)
+    return {
+      window = {
+        width = "75%",
+        height = "70%",
+        border = "rounded",
+      },
+
+      lines = {
+        { text = "💎 Pure Native Neovim Component (.luex)", class = "Header" },
+        { divider = "Comment" },
+
+        { text = "📌 Status: " .. ctx.status.value, class = "Status" },
+        { text = "⚡ Zero-overhead Native Signal Engine", class = "Info" },
+
+        { divider = "Comment" },
+
+        -- Nesting Cross-Framework Components inside Native .luex Component!
+        { component = HelloModal },
+        { component = GitDashboard },
+        { component = VueCounter },
+
+        { divider = "Comment" },
+        { text = "Press 'q' or 'Esc' to close NativeHub.", class = "Comment" },
+      },
+
+      keymaps = {
+        ["q"] = "close",
+        ["<Esc>"] = "close",
+      },
+    }
+  end,
+})

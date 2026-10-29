@@ -1,0 +1,23 @@
+<script lazy={false} events={["VimEnter"]} cmd="LuelteHello">
+  onMount(function(ctx)
+    vim.notify("[Luelte] Startup Hello Modal Mounted (win: " .. tostring(ctx.win) .. ")", vim.log.levels.INFO)
+  end)
+
+  onDestroy(function()
+    vim.notify("[Luelte] Startup Hello Modal Dismissed.", vim.log.levels.INFO)
+  end)
+
+  local greeting = "Hello World!"
+  local subtext = "Welcome to Neovim powered by Luelte SFC engine."
+</script>
+
+<main width="55%" height="35%" border="double">
+  <h1 class="Title">✨ {greeting}</h1>
+  <hr class="Comment" />
+
+  <p class="Normal">{subtext}</p>
+  <div class="Keyword">⚡ 0 ms startup overhead | Pure native Lua</div>
+
+  <hr class="Comment" />
+  <span class="Special">Press 'q' or 'Esc' to dismiss.</span>
+</main>

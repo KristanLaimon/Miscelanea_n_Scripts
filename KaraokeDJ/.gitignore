@@ -1,0 +1,5 @@
+.foxnvim
+/target/
+/dist/
+/.tools/
+*.autosave.kdj

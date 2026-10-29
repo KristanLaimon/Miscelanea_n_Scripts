@@ -1,0 +1,36 @@
+<script lazy={true} keys={["<leader>c"]} cmd="LuelteCounter">
+  -- Svelte 5 $props() Rune with prop type validation schema
+  local props = $props({
+    initial_count = "number",
+    title = "string"
+  })
+
+  local count = $state(0)
+  local double_count = $derived(function() return count.value * 2 end)
+
+  onMount(function(ctx)
+    vim.notify("[Luelte] Reactive Counter Mounted (win: " .. tostring(ctx.win) .. ")", vim.log.levels.INFO)
+  end)
+
+  local function increment()
+    count.value = count.value + 1
+  end
+
+  local function decrement()
+    count.value = count.value - 1
+  end
+</script>
+
+<main width="55%" height="45%" border="rounded" on:key:i={increment} on:key:d={decrement}>
+  <h1 class="Title">⚡ Svelte 5 Runes Reactive Counter</h1>
+  <hr class="Comment" />
+
+  <p class="Keyword">Count ($state): {count.value}</p>
+  <p class="String">Double ($derived): {double_count.value}</p>
+
+  <hr class="Comment" />
+  <p class="Function">Press 'i' to increment (+1)</p>
+  <p class="Function">Press 'd' to decrement (-1)</p>
+  <hr class="Comment" />
+  <span class="Special">Press 'q' or 'Esc' to close counter.</span>
+</main>

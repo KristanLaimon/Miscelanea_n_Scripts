@@ -1,0 +1,11 @@
+{
+    "name":  "figcraft",
+    "version":  "0.5.1",
+    "description":  "Connect Codex to the locally installed FigCraft design engine.",
+    "mcpServers":  "./.mcp.json",
+    "interface":  {
+                      "displayName":  "FigCraft",
+                      "shortDescription":  "Create, inspect and export local FigCraft designs",
+                      "category":  "Productivity"
+                  }
+}

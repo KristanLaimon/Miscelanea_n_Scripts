@@ -1,0 +1,33 @@
+[package]
+name = "karaoke-maker"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+eframe = { version = "0.33.3", default-features = false, features = ["default_fonts", "wgpu", "x11", "wayland", "accesskit", "persistence"] }
+serde = { version = "1", features = ["derive"] }
+bincode = "1.3"
+rfd = { version = "0.17.2", features = ["file-handle-inner"] }
+web-time = "1"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+wgpu = { version = "27", default-features = false, features = ["dx12", "vulkan", "gles", "wgsl"] }
+rodio = { version = "0.21.1", default-features = false, features = ["playback", "wav"] }
+tempfile = "3"
+pollster = "0.4"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wgpu = { version = "27", default-features = false, features = ["webgpu", "webgl"] }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = ["Window", "Document", "HtmlCanvasElement", "HtmlAudioElement", "HtmlMediaElement", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url", "Storage", "Element"] }
+
+[profile.release]
+opt-level = 2
+
+[profile.web-release]
+inherits = "release"
+opt-level = "s"
+lto = "thin"

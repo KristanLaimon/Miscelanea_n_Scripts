@@ -1,0 +1,62 @@
+<style>
+  .GitTitle {
+    color: #50fa7b;
+    font-weight: bold;
+  }
+  .GitBranch {
+    color: #8be9fd;
+    font-style: italic;
+  }
+  .GitStatusClean {
+    color: #f1fa8c;
+  }
+</style>
+
+local luex = require("luex")
+local useState = luex.useState
+local useEffect = luex.useEffect
+local PropTypes = luex.PropTypes
+
+function GitDashboard(props)
+  local branch, setBranch = useState("main")
+  local statusLines, setStatusLines = useState({ "✓ Working tree clean" })
+
+  useEffect(function()
+    local b = vim.fn.system("git branch --show-current 2>/dev/null"):gsub("\n", "")
+    if b ~= "" then setBranch(b) end
+
+    local st = vim.fn.system("git status --short 2>/dev/null")
+    local lines = {}
+    for line in st:gmatch("[^\r\n]+") do
+      table.insert(lines, line)
+    end
+    if #lines > 0 then setStatusLines(lines) end
+  end, {})
+
+  return (
+    <main width="65%" height="60%" border="rounded">
+      <h1 class="GitTitle">🐙 React-Style Git Dashboard (.luact)</h1>
+      <hr class="Comment" />
+      <div class="GitBranch">📌 Branch: {branch}</div>
+      <hr class="Comment" />
+      <h2 class="Keyword">📂 Status / Changes:</h2>
+      {#each statusLines as st, idx}
+        <p class="GitStatusClean">   {st}</p>
+      {/each}
+      <hr class="Comment" />
+      <span class="Special">Press 'q' or 'Esc' to close Git Dashboard.</span>
+    </main>
+  )
+end
+
+-- React-Idiomatic Component Metadata & PropTypes (No <script> tag needed!)
+GitDashboard.cmd = "LuelteGitDashboard"
+GitDashboard.keys = { "<C-S-g>", "<C-S-G>" }
+GitDashboard.lazy = true
+
+GitDashboard.propTypes = {
+  branch = PropTypes.string,
+  refreshInterval = PropTypes.number
+}
+
+return GitDashboard

@@ -1,0 +1,7 @@
+<script>
+  vim.g.mapleader = " "
+  vim.opt.number = true
+  vim.opt.relativenumber = true
+  vim.opt.termguicolors = true
+  print("[Luelte] Base configuration initialized.")
+</script>
