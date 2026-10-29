@@ -18,7 +18,7 @@ use windows_sys::{
         Foundation::*,
         Graphics::Gdi::*,
         System::{LibraryLoader::*, Threading::*},
-        UI::{Input::KeyboardAndMouse::*, WindowsAndMessaging::*},
+        UI::{Input::KeyboardAndMouse::*, Shell::*, WindowsAndMessaging::*},
     },
     w,
 };
@@ -31,6 +31,9 @@ const STARTUP: i32 = 102;
 const THRESHOLD_EDIT: i32 = 103;
 const STATUS: i32 = 104;
 const STARTUP_STATUS: i32 = 105;
+const OPEN: i32 = 106;
+const EXIT: i32 = 107;
+const TRAY_MESSAGE: u32 = WM_APP + 1;
 const CLASS: *const u16 = w!("ClickProoferWindow");
 
 thread_local! {
@@ -214,6 +217,78 @@ unsafe fn refresh_startup(window: HWND) -> Result<(), String> {
     Ok(())
 }
 
+unsafe fn tray_icon(window: HWND, action: u32) -> Result<(), String> {
+    let mut data: NOTIFYICONDATAW = unsafe { std::mem::zeroed() };
+    data.cbSize = std::mem::size_of::<NOTIFYICONDATAW>() as u32;
+    data.hWnd = window;
+    data.uID = 1;
+    data.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
+    data.uCallbackMessage = TRAY_MESSAGE;
+    data.hIcon = unsafe { LoadIconW(null_mut(), IDI_APPLICATION) };
+    let tip = wide("ClickProofer - right-click for options");
+    data.szTip[..tip.len()].copy_from_slice(&tip);
+    if unsafe { Shell_NotifyIconW(action, &data) } == 0 {
+        return Err("Cannot update the ClickProofer tray icon.".into());
+    }
+    Ok(())
+}
+
+unsafe fn tray_menu(window: HWND) -> Result<(), String> {
+    let startup_enabled = startup::enabled()?;
+    unsafe {
+        let menu = CreatePopupMenu();
+        if menu.is_null() {
+            return Err(std::io::Error::last_os_error().to_string());
+        }
+        let mut point: POINT = std::mem::zeroed();
+        let ready = AppendMenuW(menu, MF_STRING, OPEN as usize, w!("Open ClickProofer")) != 0
+            && AppendMenuW(
+                menu,
+                MF_STRING,
+                START as usize,
+                if ENABLED.load(Relaxed) {
+                    w!("Stop filtering")
+                } else {
+                    w!("Start filtering")
+                },
+            ) != 0
+            && AppendMenuW(
+                menu,
+                MF_STRING,
+                STARTUP as usize,
+                if startup_enabled {
+                    w!("Disable startup")
+                } else {
+                    w!("Enable startup")
+                },
+            ) != 0
+            && AppendMenuW(menu, MF_SEPARATOR, 0, null()) != 0
+            && AppendMenuW(menu, MF_STRING, EXIT as usize, w!("Exit ClickProofer")) != 0
+            && GetCursorPos(&mut point) != 0;
+        if !ready {
+            DestroyMenu(menu);
+            return Err("Cannot create the tray menu.".into());
+        }
+        SetForegroundWindow(window);
+        let command = TrackPopupMenu(
+            menu,
+            TPM_RETURNCMD | TPM_RIGHTBUTTON,
+            point.x,
+            point.y,
+            0,
+            window,
+            null(),
+        );
+        DestroyMenu(menu);
+        // Let the shell dismiss the menu when the user clicks elsewhere.
+        PostMessageW(window, WM_NULL, 0, 0);
+        if command != 0 {
+            SendMessageW(window, WM_COMMAND, command as WPARAM, 0);
+        }
+    }
+    Ok(())
+}
+
 unsafe extern "system" fn window_proc(
     window: HWND,
     message: u32,
@@ -224,6 +299,20 @@ unsafe extern "system" fn window_proc(
         WM_COMMAND => {
             if (wparam >> 16) as u32 == BN_CLICKED {
                 let result = match (wparam & 0xffff) as i32 {
+                    OPEN => {
+                        unsafe {
+                            ShowWindow(window, SW_RESTORE);
+                            SetForegroundWindow(window);
+                            SetFocus(GetDlgItem(window, START));
+                        }
+                        Ok(())
+                    }
+                    EXIT => {
+                        unsafe {
+                            DestroyWindow(window);
+                        }
+                        return 0;
+                    }
                     START => {
                         if ENABLED.load(Relaxed) {
                             ENABLED.store(false, Relaxed);
@@ -264,15 +353,45 @@ unsafe extern "system" fn window_proc(
             }
             0
         }
+        TRAY_MESSAGE => {
+            match lparam as u32 {
+                WM_LBUTTONUP => unsafe {
+                    SendMessageW(window, WM_COMMAND, OPEN as WPARAM, 0);
+                },
+                WM_RBUTTONUP | WM_CONTEXTMENU => {
+                    if let Err(error) = unsafe { tray_menu(window) } {
+                        show_error(&error);
+                    }
+                }
+                _ => {}
+            }
+            0
+        }
+        WM_CLOSE => {
+            unsafe {
+                ShowWindow(window, SW_HIDE);
+            }
+            0
+        }
         WM_DESTROY => {
             ENABLED.store(false, Relaxed);
             unsafe {
                 KillTimer(window, 1);
+                let _ = tray_icon(window, NIM_DELETE);
                 PostQuitMessage(0);
             }
             0
         }
-        _ => unsafe { DefWindowProcW(window, message, wparam, lparam) },
+        _ => unsafe {
+            if message == RegisterWindowMessageW(w!("TaskbarCreated")) {
+                if let Err(error) = tray_icon(window, NIM_ADD) {
+                    ShowWindow(window, SW_RESTORE);
+                    show_error(&error);
+                }
+                return 0;
+            }
+            DefWindowProcW(window, message, wparam, lparam)
+        },
     }
 }
 
@@ -316,6 +435,7 @@ unsafe fn control(
 }
 
 fn run() -> Result<(), String> {
+    let autostart = std::env::args().any(|argument| argument == "--auto-start");
     unsafe {
         let mutex = CreateMutexW(null(), 0, w!("Local\\ClickProofer.SingleInstance"));
         if mutex.is_null() {
@@ -323,23 +443,22 @@ fn run() -> Result<(), String> {
         }
         if GetLastError() == ERROR_ALREADY_EXISTS {
             let existing = FindWindowW(CLASS, null());
-            if !existing.is_null() {
+            if !autostart && !existing.is_null() {
                 ShowWindow(existing, SW_RESTORE);
                 SetForegroundWindow(existing);
             }
             CloseHandle(mutex);
             return Ok(());
         }
-        let result = run_window();
+        let result = run_window(autostart);
         CloseHandle(mutex);
         result
     }
 }
 
-unsafe fn run_window() -> Result<(), String> {
+unsafe fn run_window(autostart: bool) -> Result<(), String> {
     let threshold = startup::load_threshold()?;
     THRESHOLD.store(threshold, Relaxed);
-    let autostart = std::env::args().any(|argument| argument == "--auto-start");
     let instance = unsafe { GetModuleHandleW(null()) };
     let class = WNDCLASSW {
         lpfnWndProc: Some(window_proc),
@@ -432,13 +551,14 @@ unsafe fn run_window() -> Result<(), String> {
         control(
             window,
             w!("STATIC"),
-            "Minimize to keep filtering. Closing stops filtering.",
+            "Closing hides to tray. Right-click the tray icon to exit.",
             0,
             0,
             [18, 248, 430, 24],
         )?;
         refresh_startup(window)?;
         refresh_status(window);
+        tray_icon(window, NIM_ADD)?;
         Ok::<(), String>(())
     })();
     if let Err(error) = setup {
@@ -464,8 +584,11 @@ unsafe fn run_window() -> Result<(), String> {
             hook.stop();
             return Err("Cannot create the status timer.".into());
         }
-        ShowWindow(window, if autostart { SW_SHOWMINIMIZED } else { SW_SHOW });
-        SetFocus(GetDlgItem(window, START));
+        // Never show the startup window, even briefly or minimized.
+        if !autostart {
+            ShowWindow(window, SW_SHOW);
+            SetFocus(GetDlgItem(window, START));
+        }
         let mut message: MSG = std::mem::zeroed();
         let result = loop {
             match GetMessageW(&mut message, null_mut(), 0, 0) {
@@ -480,6 +603,9 @@ unsafe fn run_window() -> Result<(), String> {
             }
         };
         hook.stop();
+        if IsWindow(window) != 0 {
+            DestroyWindow(window);
+        }
         result
     }
 }
@@ -487,5 +613,66 @@ unsafe fn run_window() -> Result<(), String> {
 fn main() {
     if let Err(error) = run() {
         show_error(&error);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::time::{Duration, Instant};
+
+    #[test]
+    fn startup_stays_hidden_close_preserves_filtering_and_exit_stops_it() {
+        unsafe extern "system" fn find_window(window: HWND, data: LPARAM) -> i32 {
+            unsafe {
+                *(data as *mut HWND) = window;
+            }
+            0
+        }
+
+        let ui_thread = unsafe { GetCurrentThreadId() };
+        let check = thread::spawn(move || unsafe {
+            let deadline = Instant::now() + Duration::from_secs(5);
+            let mut window: HWND = null_mut();
+            while window.is_null() && Instant::now() < deadline {
+                EnumThreadWindows(
+                    ui_thread,
+                    Some(find_window),
+                    (&mut window as *mut HWND) as LPARAM,
+                );
+                thread::sleep(Duration::from_millis(10));
+            }
+            assert!(
+                !window.is_null(),
+                "Startup did not create its hidden window"
+            );
+            // Wait until setup finishes and the UI starts processing messages.
+            SendMessageW(window, WM_NULL, 0, 0);
+            let hidden_on_startup = IsWindowVisible(window) == 0;
+            let filtering_on_startup = ENABLED.load(Relaxed);
+            SendMessageW(window, WM_COMMAND, OPEN as WPARAM, 0);
+            let opened = IsWindowVisible(window) != 0;
+            SendMessageW(window, WM_CLOSE, 0, 0);
+            let hidden_on_close = IsWindowVisible(window) == 0 && IsWindow(window) != 0;
+            let filtering_after_close = ENABLED.load(Relaxed);
+            SendMessageW(window, WM_COMMAND, START as WPARAM, 0);
+            let stopped_from_tray = !ENABLED.load(Relaxed);
+            SendMessageW(window, WM_COMMAND, EXIT as WPARAM, 0);
+            (
+                hidden_on_startup,
+                filtering_on_startup,
+                opened,
+                hidden_on_close,
+                filtering_after_close,
+                stopped_from_tray,
+                IsWindow(window) == 0,
+            )
+        });
+        unsafe { run_window(true) }.unwrap();
+        assert_eq!(
+            check.join().unwrap(),
+            (true, true, true, true, true, true, true)
+        );
+        assert!(!ENABLED.load(Relaxed));
     }
 }
